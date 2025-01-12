@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "875133359456",
+    "project_id": "porto-d48b1",
+    "storage_bucket": "porto-d48b1.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:875133359456:android:246d4fb0b42b3a1e2efa05",
+        "android_client_info": {
+          "package_name": "com.porto.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAybW2ZqPFuB79a6IS1TKbQYMgU_Y-TYis"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

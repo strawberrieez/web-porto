@@ -5,10 +5,8 @@ class Cont1 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Mendapatkan ukuran layar
     final screenWidth = MediaQuery.of(context).size.width;
 
-    // Menentukan apakah layar kecil, medium, atau besar
     final isSmallScreen = screenWidth < 600;
     final isMediumScreen = screenWidth >= 600 && screenWidth < 1200;
 
@@ -26,13 +24,11 @@ class Cont1 extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              // Kolom Kanan: Gambar
               Flexible(
                 flex: 1,
                 child: _buildImageContainer(isSmallScreen, isMediumScreen),
               ),
-              if (!isSmallScreen) const SizedBox(width: 40), // Spasi antar elemen
-              // Kolom Kiri: Teks
+              if (!isSmallScreen) const SizedBox(width: 40),
               Flexible(
                 flex: 2,
                 child: _buildTextColumn(isSmallScreen, isMediumScreen),
@@ -44,36 +40,33 @@ class Cont1 extends StatelessWidget {
     );
   }
 
-  // Fungsi untuk membangun kolom teks
   Widget _buildTextColumn(bool isSmallScreen, bool isMediumScreen) {
     final textSize = isSmallScreen
         ? 16.0
         : isMediumScreen
             ? 18.0
-            : 20.0; // Ukuran teks dinamis
+            : 20.0;
     final nameSize = isSmallScreen
         ? 30.0
         : isMediumScreen
             ? 40.0
-            : 50.0; // Ukuran nama dinamis
+            : 50.0;
     final professionSize = isSmallScreen
         ? 18.0
         : isMediumScreen
             ? 22.0
-            : 25.0; // Ukuran profesi dinamis
+            : 25.0;
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        // Garis Horizontal
         Container(
           width: 100,
           height: 5,
           color: const Color(0xFF64FFDA),
         ),
         const SizedBox(height: 20),
-        // Teks "Hello, I'm"
         Text(
           "Hello, I'm",
           style: TextStyle(
@@ -83,7 +76,6 @@ class Cont1 extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 10),
-        // Nama
         Text(
           "Sekar Ayu Fatmasari.",
           style: TextStyle(
@@ -93,7 +85,6 @@ class Cont1 extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 10),
-        // Profesi
         Text(
           "Front End Engineer.",
           style: TextStyle(
@@ -103,7 +94,6 @@ class Cont1 extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 20),
-        // Deskripsi
         Text(
           "I'm a passionate Mobile Front-End Engineer, dedicated to creating seamless and engaging user experiences. \n"
           "Explore my work and let's bring your ideas to life through intuitive mobile applications.",
@@ -117,13 +107,12 @@ class Cont1 extends StatelessWidget {
     );
   }
 
-  // Fungsi untuk membangun kontainer gambar
   Widget _buildImageContainer(bool isSmallScreen, bool isMediumScreen) {
     final imageSize = isSmallScreen
         ? 150.0
         : isMediumScreen
             ? 200.0
-            : 250.0; // Ukuran gambar dinamis
+            : 250.0;
 
     return Container(
       height: imageSize,
@@ -137,7 +126,7 @@ class Cont1 extends StatelessWidget {
       ),
       child: ClipOval(
         child: Image.asset(
-          'assets/images/kucing.jpg', // Ganti dengan path foto Anda
+          'assets/images/kucing.jpg',
           fit: BoxFit.cover,
         ),
       ),

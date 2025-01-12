@@ -1,0 +1,36 @@
+{
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "porto-d48b1",
+          "appId": "1:875133359456:android:246d4fb0b42b3a1e2efa05",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "porto-d48b1",
+          "configurations": {
+            "android": "1:875133359456:android:246d4fb0b42b3a1e2efa05",
+            "web": "1:875133359456:web:446cf87a3b0f60592efa05"
+          }
+        }
+      }
+    }
+  },
+  "hosting": {
+    "public": "build/web",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}

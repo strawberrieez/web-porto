@@ -5,11 +5,9 @@ class Cont2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Mendapatkan ukuran layar
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
 
-    // Menentukan apakah layar kecil, medium, atau besar
     final isSmallScreen = screenWidth < 600;
     final isMediumScreen = screenWidth >= 600 && screenWidth < 1200;
 
@@ -25,12 +23,11 @@ class Cont2 extends StatelessWidget {
                 : isMediumScreen
                     ? 40.0
                     : 100.0,
-          ), // Padding responsif
+          ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              // Judul "About Me"
               Text(
                 "About Me",
                 style: TextStyle(
@@ -39,12 +36,11 @@ class Cont2 extends StatelessWidget {
                       ? 24.0
                       : isMediumScreen
                           ? 30.0
-                          : 36.0, // Ukuran font responsif
+                          : 36.0,
                   fontWeight: FontWeight.bold,
                 ),
               ),
               const SizedBox(height: 30),
-              // Paragraf pertama
               Text(
                 "I am a student of Informatics at the Faculty of Engineering, Universitas Siliwangi, with a deep interest in mobile development. I’ve always been fascinated by the way mobile applications shape our daily lives, and this passion has led me to pursue a career in creating intuitive and innovative mobile solutions.",
                 style: TextStyle(
@@ -53,13 +49,12 @@ class Cont2 extends StatelessWidget {
                       ? 14.0
                       : isMediumScreen
                           ? 16.0
-                          : 18.0, // Ukuran font responsif
+                          : 18.0,
                   height: 1.6,
                 ),
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 30),
-              // Paragraf kedua
               Text(
                 "As a mobile front-end developer, I focus on crafting user-friendly and responsive interfaces. I strive to combine functionality with design to deliver applications that are both visually appealing and easy to navigate. I’m always eager to learn new technologies and techniques to improve my skills and keep up with the fast-evolving mobile development landscape.",
                 style: TextStyle(
@@ -74,7 +69,6 @@ class Cont2 extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 30),
-              // Paragraf ketiga
               Text(
                 "My goal is to build applications that make a real difference in users' lives. Through collaboration and continuous improvement, I aim to contribute to projects that push the boundaries of mobile technology and enhance user experiences.",
                 style: TextStyle(

@@ -7,7 +7,6 @@ class Cont3 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
-
     final isSmallScreen = screenWidth < 600;
     final isMediumScreen = screenWidth >= 600 && screenWidth < 1200;
 
@@ -58,7 +57,6 @@ class Cont3 extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 50),
-              // Proyek 1: Mantani
               _buildProject(
                 context,
                 "assets/images/mantani2.png",
@@ -70,7 +68,6 @@ class Cont3 extends StatelessWidget {
                 isMediumScreen,
               ),
               const SizedBox(height: 50),
-              // Proyek 2: Kost Hany
               _buildProject(
                 context,
                 "assets/images/kosthany2.png",
@@ -82,7 +79,6 @@ class Cont3 extends StatelessWidget {
                 isMediumScreen,
               ),
               const SizedBox(height: 50),
-              // Proyek 3: FunMath
               _buildProject(
                 context,
                 "assets/images/funmath2.png",
@@ -94,7 +90,6 @@ class Cont3 extends StatelessWidget {
                 isMediumScreen,
               ),
               const SizedBox(height: 50),
-              // Proyek 4: MenuInsight
               _buildProject(
                 context,
                 "assets/images/menin.png",
@@ -122,43 +117,33 @@ class Cont3 extends StatelessWidget {
     bool isSmallScreen,
     bool isMediumScreen,
   ) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        // Gambar dengan pinggiran
-        Container(
-          height: isSmallScreen ? 150 : 200,
-          width: isSmallScreen ? 250 : 400,
-          decoration: BoxDecoration(
-            border: Border.all(
-              color: Colors.white,
-              width: 5,
-            ),
-            borderRadius: BorderRadius.circular(10),
-          ),
-          child: ClipRRect(
-            child: Image.asset(
-              imagePath,
-              fit: BoxFit.cover,
-            ),
-          ),
-        ),
-        const SizedBox(width: 50),
-        // Penjelasan, link, dan kotak komponen
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+    return isSmallScreen
+        ? Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              Container(
+                height: 150,
+                width: 250,
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: Colors.white,
+                    width: 5,
+                  ),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: ClipRRect(
+                  child: Image.asset(
+                    imagePath,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 20),
               Text(
                 title,
                 style: TextStyle(
                   color: const Color(0xFF64FFDA),
-                  fontSize: isSmallScreen
-                      ? 18.0
-                      : isMediumScreen
-                          ? 22.0
-                          : 24.0,
+                  fontSize: 18.0,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -167,11 +152,7 @@ class Cont3 extends StatelessWidget {
                 description,
                 style: TextStyle(
                   color: const Color(0xFF8892B0),
-                  fontSize: isSmallScreen
-                      ? 12.0
-                      : isMediumScreen
-                          ? 14.0
-                          : 16.0,
+                  fontSize: 14.0,
                   height: 1.5,
                 ),
               ),
@@ -205,17 +186,96 @@ class Cont3 extends StatelessWidget {
                   ),
                 ),
               const SizedBox(height: 20),
-              // Kotak-kotak komponen
               Wrap(
                 spacing: 10,
                 runSpacing: 10,
                 children: components.map((component) => _buildComponentBox(component)).toList(),
               ),
             ],
-          ),
-        ),
-      ],
-    );
+          )
+        : Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                height: 200,
+                width: 400,
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: Colors.white,
+                    width: 5,
+                  ),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: ClipRRect(
+                  child: Image.asset(
+                    imagePath,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+              const SizedBox(width: 50),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      title,
+                      style: TextStyle(
+                        color: const Color(0xFF64FFDA),
+                        fontSize: isMediumScreen ? 22.0 : 24.0,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    Text(
+                      description,
+                      style: TextStyle(
+                        color: const Color(0xFF8892B0),
+                        fontSize: isMediumScreen ? 14.0 : 16.0,
+                        height: 1.5,
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    if (repositoryLink != null)
+                      GestureDetector(
+                        onTap: () async {
+                          final url = Uri.parse(repositoryLink);
+                          if (await canLaunchUrl(url)) {
+                            await launchUrl(url, mode: LaunchMode.externalApplication);
+                          } else {
+                            throw 'Could not launch $repositoryLink';
+                          }
+                        },
+                        child: const Text(
+                          "GitHub Repository",
+                          style: TextStyle(
+                            color: Color(0xFF64FFDA),
+                            fontSize: 16,
+                            decoration: TextDecoration.underline,
+                          ),
+                        ),
+                      )
+                    else
+                      const Text(
+                        "No Repository",
+                        style: TextStyle(
+                          color: Color(0xFF64FFDA),
+                          fontSize: 16,
+                          decoration: TextDecoration.underline,
+                        ),
+                      ),
+                    const SizedBox(height: 20),
+                    Wrap(
+                      spacing: 10,
+                      runSpacing: 10,
+                      children: components.map((component) => _buildComponentBox(component)).toList(),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          );
   }
 
   Widget _buildComponentBox(String componentName) {
