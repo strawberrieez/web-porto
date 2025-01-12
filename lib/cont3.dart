@@ -6,28 +6,54 @@ class Cont3 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+
+    final isSmallScreen = screenWidth < 600;
+    final isMediumScreen = screenWidth >= 600 && screenWidth < 1200;
+
     return Padding(
-      padding: const EdgeInsets.fromLTRB(200, 50, 200, 100),
+      padding: EdgeInsets.fromLTRB(
+        isSmallScreen
+            ? 16.0
+            : isMediumScreen
+                ? 40.0
+                : 200.0,
+        50,
+        isSmallScreen
+            ? 16.0
+            : isMediumScreen
+                ? 40.0
+                : 200.0,
+        100,
+      ),
       child: Container(
         color: const Color(0xFF0A192F),
-        width: MediaQuery.of(context).size.width,
+        width: screenWidth,
         child: Center(
           child: Column(
             children: [
-              const Text(
+              Text(
                 "Projects",
                 style: TextStyle(
-                  color: Color(0xFF64FFDA),
-                  fontSize: 30,
+                  color: const Color(0xFF64FFDA),
+                  fontSize: isSmallScreen
+                      ? 24.0
+                      : isMediumScreen
+                          ? 30.0
+                          : 36.0,
                   fontWeight: FontWeight.bold,
                 ),
               ),
               const SizedBox(height: 10),
-              const Text(
+              Text(
                 "Here are some of the projects I've worked on:",
                 style: TextStyle(
-                  color: Color(0xFF8892B0),
-                  fontSize: 18,
+                  color: const Color(0xFF8892B0),
+                  fontSize: isSmallScreen
+                      ? 14.0
+                      : isMediumScreen
+                          ? 16.0
+                          : 18.0,
                   height: 1.5,
                 ),
               ),
@@ -40,6 +66,8 @@ class Cont3 extends StatelessWidget {
                 "Mantani is an application designed to help farmers monitor their crops effectively. It provides real-time data and insights to optimize irrigation and ensure better yields.",
                 "https://github.com/strawberrieez/Mantani.git",
                 ["Dart", "Flutter", "Firebase"],
+                isSmallScreen,
+                isMediumScreen,
               ),
               const SizedBox(height: 50),
               // Proyek 2: Kost Hany
@@ -50,6 +78,8 @@ class Cont3 extends StatelessWidget {
                 "Kost Hany Pista is an application aimed at helping students find affordable and convenient housing near their campus. It offers a user-friendly interface to search, compare, and book rental properties.",
                 null,
                 ["Dart", "Flutter", "Firebase"],
+                isSmallScreen,
+                isMediumScreen,
               ),
               const SizedBox(height: 50),
               // Proyek 3: FunMath
@@ -60,6 +90,8 @@ class Cont3 extends StatelessWidget {
                 "FunMath is a gamified learning platform designed to make math more engaging for students. It offers interactive exercises, quizzes, and challenges to improve mathematical skills.",
                 null,
                 ["Dart", "Flutter"],
+                isSmallScreen,
+                isMediumScreen,
               ),
               const SizedBox(height: 50),
               // Proyek 4: MenuInsight
@@ -70,6 +102,8 @@ class Cont3 extends StatelessWidget {
                 "MenuInsight is a web-based platform designed to help restaurant owners analyze menu performance. It provides data-driven insights to optimize pricing and menu design.",
                 "https://github.com/strawberrieez/aljabar-project.git",
                 ["Dart", "Flutter", "Firebase"],
+                isSmallScreen,
+                isMediumScreen,
               ),
             ],
           ),
@@ -85,6 +119,8 @@ class Cont3 extends StatelessWidget {
     String description,
     String? repositoryLink,
     List<String> components,
+    bool isSmallScreen,
+    bool isMediumScreen,
   ) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -92,8 +128,8 @@ class Cont3 extends StatelessWidget {
       children: [
         // Gambar dengan pinggiran
         Container(
-          height: 200,
-          width: 400,
+          height: isSmallScreen ? 150 : 200,
+          width: isSmallScreen ? 250 : 400,
           decoration: BoxDecoration(
             border: Border.all(
               color: Colors.white,
@@ -116,18 +152,26 @@ class Cont3 extends StatelessWidget {
             children: [
               Text(
                 title,
-                style: const TextStyle(
-                  color: Color(0xFF64FFDA),
-                  fontSize: 24,
+                style: TextStyle(
+                  color: const Color(0xFF64FFDA),
+                  fontSize: isSmallScreen
+                      ? 18.0
+                      : isMediumScreen
+                          ? 22.0
+                          : 24.0,
                   fontWeight: FontWeight.bold,
                 ),
               ),
               const SizedBox(height: 10),
               Text(
                 description,
-                style: const TextStyle(
-                  color: Color(0xFF8892B0),
-                  fontSize: 16,
+                style: TextStyle(
+                  color: const Color(0xFF8892B0),
+                  fontSize: isSmallScreen
+                      ? 12.0
+                      : isMediumScreen
+                          ? 14.0
+                          : 16.0,
                   height: 1.5,
                 ),
               ),
